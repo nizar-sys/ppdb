@@ -67,11 +67,16 @@ class LandingPage extends Component {
         {/* HERO SECTION */}
         <section className="hero">
           <div className="container">
-            <div class="alert alert-info alert-dismissible" data-aos="fade-left" data-aos-delay="2000">
+            <div
+              class="alert alert-info alert-dismissible"
+              data-aos="fade-left"
+              data-aos-delay="2000"
+            >
               <a href="#" class="close" data-dismiss="alert" aria-label="close">
                 &times;
               </a>
-              <strong>Selamat Datang!</strong> Daftar PPDB secara Online <a href="/daftar">Di sini</a>
+              <strong>Selamat Datang!</strong> Daftar PPDB secara Online{" "}
+              <a href="/daftar">Di sini</a>
             </div>
             <div className="row mt-5">
               <div className="col-md-7">
@@ -97,41 +102,43 @@ class LandingPage extends Component {
         {/* END OF HERO */}
 
         <section className="section mt-5" id="tentang-kami" data-aos="fade-up">
-          <div className="section-title">
-            <h3>Tentang Kami</h3>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-6 mt-2" data-aos="fade-right">
-                <h4 className="text-center">Sekolah Berprestasi</h4>
-                <div className="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    className="embed-responsive-item"
-                    src="https://www.youtube.com/embed/_V8ZWxAcGY4"
-                    allowfullscreen
-                  ></iframe>
+          <div className="container mt-5">
+            <div className="section-title mt-5">
+              <h3 className="mt-5">Tentang Kami</h3>
+            </div>
+            <div className="container mt-5">
+              <div className="row">
+                <div className="col-md-6 mt-2" data-aos="fade-right">
+                  <h4 className="text-center">Sekolah Berprestasi</h4>
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <iframe
+                      className="embed-responsive-item"
+                      src="https://www.youtube.com/embed/_V8ZWxAcGY4"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-6 mt-2" data-aos="fade-left">
-                <h4 className="text-center">Sekolah Berkarakter</h4>
-                <div className="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    className="embed-responsive-item"
-                    src="https://www.youtube.com/embed/BeIHXmayzIA"
-                    allowfullscreen
-                  ></iframe>
+                <div className="col-md-6 mt-2" data-aos="fade-left">
+                  <h4 className="text-center">Sekolah Berkarakter</h4>
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <iframe
+                      className="embed-responsive-item"
+                      src="https://www.youtube.com/embed/BeIHXmayzIA"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
                 </div>
-              </div>
-              <div className="col-md-6 mt-2 mx-auto" data-aos="fade-up">
-                <h4 className="text-center">
-                  Lulusan Berkualitas dan Siap Bekerjar
-                </h4>
-                <div className="embed-responsive embed-responsive-16by9">
-                  <iframe
-                    className="embed-responsive-item"
-                    src="https://www.youtube.com/embed/BeIHXmayzIA"
-                    allowfullscreen
-                  ></iframe>
+                <div className="col-md-6 mt-2 mx-auto" data-aos="fade-up">
+                  <h4 className="text-center">
+                    Lulusan Berkualitas dan Siap Bekerjar
+                  </h4>
+                  <div className="embed-responsive embed-responsive-16by9">
+                    <iframe
+                      className="embed-responsive-item"
+                      src="https://www.youtube.com/embed/BeIHXmayzIA"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
                 </div>
               </div>
             </div>
