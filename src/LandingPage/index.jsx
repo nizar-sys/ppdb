@@ -17,15 +17,22 @@ import "aos/dist/aos.css";
 
 class LandingPage extends Component {
   componentDidMount() {
-    AOS.init();
+    AOS.init({
+      duration: 1200,
+    });
   }
   render() {
     return (
-      <div className="landing-app">
-        <nav className="navbar navbar-expand-lg navbar-light">
+      <div
+        className="landing-app"
+        data-spy="scroll"
+        data-target="#navbarNav"
+        data-offset="0"
+      >
+        <nav className="navbar navbar-expand-lg navbar-light bg-inherit">
           <div className="container">
-            <a className="navbar-brand" href="#">
-              Navbar
+            <a className="navbar-brand" href="#home">
+              SMK Wikrama
             </a>
             <button
               className="navbar-toggler"
@@ -39,55 +46,41 @@ class LandingPage extends Component {
               <span className="fa fa-bars"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav mx-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#">
-                    Home <span className="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Features
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">
-                    Pricing
-                  </a>
-                </li>
-              </ul>
+              <ul className="navbar-nav mx-auto"></ul>
               <button className="btn uwuBtn">Daftar Sekarang</button>
             </div>
           </div>
         </nav>
 
-        <div className="hero">
-          <div className="container">
-            <div className="row">
+        {/* HERO SECTION */}
+        <section className="hero">
+          <div className="container bg-inherit">
+            <div className="row mt-5">
               <div className="col-md-7">
-                <div className="icon">
+                <div className="icon mt-1" data-aos="zoom-in">
                   <img src={bg} alt="icon" />
                 </div>
               </div>
               <div className="col-md-5">
-                <div
-                  className="greeting mx-auto mt-5"
-                  data-aos="fade-left"
-                >
+                <div className="greeting mx-auto mt-5" data-aos="fade-left">
                   <p className="greeting-header text-center">Selamat Datang</p>
                   <h1 className="greeting-main">
                     PPDB SMK <i>Wikrama</i>
                   </h1>
                   <p>Ilmu yang amaliah, Amal yang ilmiah, Akhlakul karimah</p>
-                  <button className="btn btn-daftar mt-5">
-                    Daftar Sekarang
+                  <button className="btn btn-daftar mt-4">
+                    <i className="fas fa-sign-in-alt"></i> Daftar Sekarang
                   </button>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <hr className="wrap" />
+        </section>
+        {/* END OF HERO */}
+
+        <section className="tentang-kami section" id="tentang-kami">
+          <h2 className="section-title">Tentang Kami</h2>
+        </section>
       </div>
     );
   }

@@ -37,10 +37,10 @@
   .hero {
     display: flex;
     .icon {
+      margin: 0 -40px;
       max-height: 100%;
       max-width: 100%;
       object-fit: cover;
-      overflow: hidden;
     }
     .greeting {
       display: flex;
@@ -49,6 +49,8 @@
         text-transform: uppercase;
       }
       .btn-daftar {
+        width: 50%;
+        height: 50px;
         color: white;
         border: 1px solid #71fefe;
         border-radius: 8px;
@@ -60,6 +62,31 @@
       }
     }
   }
+
+  /*===== CLASS CSS ===== */
+  .section-title {
+    position: relative;
+    color: #000;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .section-title::after {
+    position: absolute;
+    content: "";
+    width: 64px;
+    height: 0.18rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 2rem;
+    background-color: #4070F4;
+  }
+  .section {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+  }
+
   //   WRAP
   .wrap {
     width: 50%;
