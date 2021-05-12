@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 // BOOTSTRAP
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -59,7 +60,9 @@ class LandingPage extends Component {
                   </a>
                 </li>
               </ul>
-              <button className="btn uwuBtn">Daftar Sekarang</button>
+              <Link to="/daftar" className="btn uwuBtn">
+                Daftar Sekarang
+              </Link>
             </div>
           </div>
         </nav>
@@ -76,7 +79,7 @@ class LandingPage extends Component {
                 &times;
               </a>
               <strong>Selamat Datang!</strong> Daftar PPDB secara Online{" "}
-              <a href="/daftar">Di sini</a>
+              <Link to="/daftar">Di sini</Link>
             </div>
             <div className="row mt-5">
               <div className="col-md-7">
@@ -91,9 +94,9 @@ class LandingPage extends Component {
                     PPDB SMK <i>Wikrama</i>
                   </h1>
                   <p>Ilmu yang amaliah, Amal yang ilmiah, Akhlakul karimah</p>
-                  <button className="btn btn-daftar mt-4">
+                  <Link to="/daftar" className="btn btn-daftar mt-5 btn-lg">
                     <i className="fas fa-sign-in-alt"></i> Daftar Sekarang
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
