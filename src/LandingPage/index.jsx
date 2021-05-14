@@ -78,8 +78,8 @@ class LandingPage extends Component {
               <a href="#" class="close" data-dismiss="alert" aria-label="close">
                 &times;
               </a>
-              <strong>Selamat Datang!</strong> Daftar PPDB secara Online{" "}
-              <Link to="/daftar">Di sini</Link>
+              <strong>Selamat Datang!</strong> Daftar PPDB secara Online
+              <Link to="/daftar"> Di sini</Link>
             </div>
             <div className="row mt-5">
               <div className="col-md-7">
@@ -95,7 +95,7 @@ class LandingPage extends Component {
                   </h1>
                   <p>Ilmu yang amaliah, Amal yang ilmiah, Akhlakul karimah</p>
                   <Link to="/daftar" className="btn btn-daftar mt-5 btn-lg">
-                    <i className="fas fa-sign-in-alt"></i> Daftar Sekarang
+                    <i className="fa fa-sign-in-alt"></i> Daftar Sekarang
                   </Link>
                 </div>
               </div>

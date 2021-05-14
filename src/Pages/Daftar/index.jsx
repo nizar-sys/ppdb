@@ -13,14 +13,32 @@ import "./styles.scss";
 
 // COMP
 import icon from "../../img/wkIcon.png";
-import $ from "jquery";
+import $, { data } from "jquery";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 import Input from "../../components/input";
 
 class Daftar extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.handleInput = this.handleInput.bind(this);
+  }
+
+  handleInput = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const dataPendaftar = this.state;
+    if (dataPendaftar != null) {
+      console.log(dataPendaftar);
+    }
+  };
+  wizard = () => {
     $(document).ready(function () {
       let current_fs, next_fs, previous_fs; //fieldsets
       let opacity;
@@ -90,8 +108,15 @@ class Daftar extends Component {
         return false;
       });
     });
+  };
+  componentDidMount() {
+    this.wizard();
   }
   render() {
+    const dataPendaftar = this.state;
+    if (dataPendaftar != null) {
+      // console.log(dataPendaftar);
+    }
     const year = new Date().getFullYear();
     return (
       <Fragment>
@@ -115,7 +140,7 @@ class Daftar extends Component {
                     </div>
                   </div>
                   <div className="col-md-12 mx-0">
-                    <form id="msform">
+                    <form id="msform" method="post">
                       <ul id="progressbar">
                         <li className="active" id="personal">
                           <strong>Data Siswa</strong>
@@ -135,28 +160,45 @@ class Daftar extends Component {
                           <h2 className="fs-title text-primary">Data Siswa</h2>
                           <Input
                             type="text"
-                            name="nama"
-                            id="nama"
+                            name="namaSiswa"
+                            id="namaSiswa"
                             placeholder="Nama Lengkap"
+                            onChange={this.handleInput}
                           />
                           <select
                             name="jk"
                             id="jk"
                             className="custom-select custom-select-lg mb-3"
                             style={{ fontFamily: "montserrat" }}
+                            onChange={this.handleInput}
                           >
-                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="">Jenis Kelamin</option>
                             <hr />
-                            <option value="l">Laki-laki</option>
-                            <option value="p">Perempuan</option>
+                            <option value="L">Laki-laki</option>
+                            <option value="P">Perempuan</option>
                           </select>
-                          <Input type="text" name="tempatLahir" id="tempatLahir" placeholder="Tempat Lahir"/>
-                          <Input type="date" name="tanggalLahir" id="tanggalLahir"/>
+                          <Input
+                            type="text"
+                            name="tempatLahir"
+                            id="tempatLahir"
+                            placeholder="Tempat Lahir"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="tglLahir"
+                            id="tglLahir"
+                            onFocus={(e) => (e.currentTarget.type = "date")}
+                            onBlur={(e) => (e.currentTarget.type = "text")}
+                            placeholder="Tanggal Lahir"
+                            onChange={this.handleInput}
+                          />
                           <select
                             name="agama"
                             id="agama"
                             className="custom-select custom-select-lg mb-3"
                             style={{ fontFamily: "montserrat" }}
+                            onChange={this.handleInput}
                           >
                             <option value="">Pilih Agama</option>
                             <hr />
@@ -167,22 +209,118 @@ class Daftar extends Component {
                             <option value="budha">Budha</option>
                             <option value="konghucu">Konghucu</option>
                           </select>
-                          <Input type="number" name="anakKe" id="anakKe" placeholder="Anak ke"/>
-                          <Input type="number" name="nisn" id="nisn" placeholder="NISN (*Pastikan NISN Terisi)"/>
-                          <Input type="number" name="nik" id="nik" placeholder="NIK (*Pastikan NIK Terisi)"/>
-                          <Input type="text" name="jalan" id="jalan" placeholder="Jalan"/>
-                          <Input type="number" name="rt" id="rt" placeholder="RT"/>
-                          <Input type="number" name="rw" id="rw" placeholder="RW"/>
-                          <Input type="number" name="noRumah" id="noRumah" placeholder="No.Rumah"/>
-                          <Input type="text" name="desa" id="desa" placeholder="Desa / Kelurahan"/>
-                          <Input type="text" name="kecamatan" id="kecamatan" placeholder="Kecamatan"/>
-                          <Input type="text" name="kota" id="kota" placeholder="Kota / Kabupaten"/>
-                          <Input type="number" name="kodePos" id="kodePos" placeholder="Kode POS"/>
-                          <Input type="text" name="alamat" id="alamat" placeholder="Alamat"/>
-                          <Input type="text" name="asalSekolah" id="asalSekolah" placeholder="Asal Sekolah"/>
-                          <Input type="number" name="tahunLulus" id="tahunLulus" placeholder="Tahun Lulus"/>
-                          <Input type="text" name="email" id="email" placeholder="Alamat Email"/>
-                          <Input type="number" name="noHp" id="noHp" placeholder="No.HP"/>
+                          <Input
+                            type="number"
+                            name="anakKe"
+                            id="anakKe"
+                            placeholder="Anak ke"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="nisn"
+                            id="nisn"
+                            placeholder="NISN (*Pastikan NISN Terisi)"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="nik"
+                            id="nik"
+                            placeholder="NIK (*Pastikan NIK Terisi)"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="jalan"
+                            id="jalan"
+                            placeholder="Jalan"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="rt"
+                            id="rt"
+                            placeholder="RT"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="rw"
+                            id="rw"
+                            placeholder="RW"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="noRumah"
+                            id="noRumah"
+                            placeholder="No.Rumah"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="desa"
+                            id="desa"
+                            placeholder="Desa / Kelurahan"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="kecamatan"
+                            id="kecamatan"
+                            placeholder="Kecamatan"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="kota"
+                            id="kota"
+                            placeholder="Kota / Kabupaten"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="kodePos"
+                            id="kodePos"
+                            placeholder="Kode POS"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="alamat"
+                            id="alamat"
+                            placeholder="Alamat"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="asalSekolah"
+                            id="asalSekolah"
+                            placeholder="Asal Sekolah"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="tahunLulus"
+                            id="tahunLulus"
+                            placeholder="Tahun Lulus"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder="Alamat Email"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="noHp"
+                            id="noHp"
+                            placeholder="No.HP"
+                            onChange={this.handleInput}
+                          />
                         </div>
                         <button
                           className="btn next action-button"
@@ -198,10 +336,68 @@ class Daftar extends Component {
                       <fieldset>
                         <div className="form-card">
                           <h2 className="fs-title">Data Orang Tua Siswa</h2>
-                          <input
-                            type="email"
-                            name="email"
-                            placeholder="Email Id"
+                          <Input
+                            type="number"
+                            name="noKK"
+                            id="noKK"
+                            placeholder="No Kartu Keluarga"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="nikAyah"
+                            id="nikAyah"
+                            placeholder="NIK Ayah"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="noHpAyah"
+                            id="noHpAyah"
+                            placeholder="No HP Ayah"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="namaAyah"
+                            id="namaAyah"
+                            placeholder="Nama Ayah"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="pekerjaanAyah"
+                            id="pekerjaanAyah"
+                            placeholder="Pekerjaan Ayah"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="nikIbu"
+                            id="nikIbu"
+                            placeholder="NIK Ibu"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="number"
+                            name="noHpIbu"
+                            id="noHpIbu"
+                            placeholder="No HP Ibu"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="namaIbu"
+                            id="namaIbu"
+                            placeholder="Nama Ibu"
+                            onChange={this.handleInput}
+                          />
+                          <Input
+                            type="text"
+                            name="pekerjaanIbu"
+                            id="pekerjaanIbu"
+                            placeholder="Pekerjaan Ibu"
+                            onChange={this.handleInput}
                           />
                         </div>
                         <button
@@ -226,24 +422,36 @@ class Daftar extends Component {
                           <h2 className="fs-title">
                             Minat Bidang &amp; Program
                           </h2>
-                          <label htmlFor="program">
-                            Mendaftar Pada Program
-                          </label>
                           <br />
-                          <select name="program" id="program">
+                          <select
+                            name="program"
+                            id="program"
+                            className="custom-select custom-select-lg mb-3"
+                            style={{ fontFamily: "montserrat" }}
+                            onChange={this.handleInput}
+                          >
                             <option value="">Pilih Program</option>
+                            <hr />
                             <option value="reguler">Reguler</option>
                             <option value="unggulan">Unggulan</option>
                           </select>
                           <br /> <br />
-                          <label htmlFor="bidang">
-                            Minat Pada Bidang Keahlian
-                          </label>
-                          <br />
-                          <select name="bidang" id="bidang">
-                            <option value="">Pilih Bidang Keahlian</option>
-                            <option value="reguler">Reguler</option>
-                            <option value="unggulan">Unggulan</option>
+                          <select
+                            name="bidang"
+                            id="bidang"
+                            className="custom-select custom-select-lg mb-3"
+                            style={{ fontFamily: "montserrat" }}
+                            onChange={this.handleInput}
+                          >
+                            <option value="">
+                              Pilih Minat Bidang Keahlian
+                            </option>
+                            <hr />
+                            <option value="tik">
+                              Teknik Informasi dan Komunikasi
+                            </option>
+                            <option value="bisnis">Bisnis Manajemen</option>
+                            <option value="pariwisata">Pariwisata</option>
                           </select>
                         </div>
                         <button
@@ -283,13 +491,14 @@ class Daftar extends Component {
                               <h5>Data Pendaftaran Berhasil di Simpan</h5>
                             </div>
                           </div>
-                          <a
-                            href="#"
-                            onClick={() => alert("Yakin ?")}
+                          <Input
+                            type="submit"
                             className="btn btn-primary"
-                          >
-                            Daftar
-                          </a>
+                            value="Daftar"
+                            name="daftar"
+                            id="daftar"
+                            onClick={this.handleSubmit}
+                          />
                         </div>
                         <button
                           className="btn previous action-button"
