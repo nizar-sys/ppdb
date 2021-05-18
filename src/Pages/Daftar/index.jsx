@@ -13,34 +13,80 @@ import "./styles.scss";
 
 // COMP
 import icon from "../../img/wkIcon.png";
-import $ from "jquery";
+import $, { data } from "jquery";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 import Input from "../../components/input";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 class Daftar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  tambahPendaftar = (e) => {
+  state = {
+    success: false,
+  };
+  tambahPendaftaran = () => {
     $("#daftar").on("click", () => {
-      let data = [$("#nama_siswa").val(), $("#jk").val()];
-      // e.preventDefault();
-      $.ajax({
-        url: "http://localhost:8080/api/daftar/",
-        method: "post",
-        data: data,
-        success: (result) => {
-          console.log(result);
-        },
-        error: (err) => {
-          console.log(err);
-        },
+      let dataPendaftar = {
+        nama_siswa: $("#nama_siswa").val(),
+        jk_siswa: $("#jk").val(),
+        tempat_lahir_siswa: $("#tempat_lahir").val(),
+        tanggal_lahir_siswa: $("#tanggal_lahir").val(),
+        agama_siswa: $("#agama").val(),
+        anak_ke: $("#anak_ke").val(),
+        nisn_siswa: $("#nisn_siswa").val(),
+        nik_siswa: $("#nik_siswa").val(),
+        jalan: $("#jalan").val(),
+        rt: $("#rt").val(),
+        rw: $("#rw").val(),
+        no_rumah: $("#no_rumah").val(),
+        desa: $("#desa").val(),
+        kecamatan: $("#kecamatan").val(),
+        kota: $("#kota").val(),
+        kode_pos: $("#kode_pos").val(),
+        alamat: $("#alamat").val(),
+        asal_sekolah: $("#asal_sekolah").val(),
+        tahun_lulus: $("#tahun_lulus").val(),
+        email: $("#email").val(),
+        no_hp: $("#no_hp").val(),
+        no_kk: $("#no_kk").val(),
+        nik_ayah: $("#nik_ayah").val(),
+        no_hp_ayah: $("#no_hp_ayah").val(),
+        nama_ayah: $("#nama_ayah").val(),
+        pekerjaan_ayah: $("#pekerjaan_ayah").val(),
+        nik_ibu: $("#nik_ibu").val(),
+        no_hp_ibu: $("#no_hp_ibu").val(),
+        nama_ibu: $("#nama_ibu").val(),
+        pekerjaan_ibu: $("#pekerjaan_ibu").val(),
+        kode_program: $("#kode_program").val(),
+        kode_bidang: $("#kode_bidang").val(),
+      };
+      Swal.fire({
+        text: "Dengan mengklik 'Daftar' Kami harap Anda setuju & yakin yang Anda lakukan !",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Batalkan",
+        confirmButtonText: "Daftar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          axios({
+            url: "http://localhost:8080/api/daftar/",
+            method: "POST",
+            data: dataPendaftar,
+          })
+            .then((res) => {
+              this.setState({
+                success: true,
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       });
     });
   };
-
   wizard = () => {
     $(document).ready(function () {
       let current_fs, next_fs, previous_fs; //fieldsets
@@ -114,10 +160,11 @@ class Daftar extends Component {
   };
   componentDidMount() {
     this.wizard();
-    this.tambahPendaftar();
+    this.tambahPendaftaran();
   }
   render() {
     const year = new Date().getFullYear();
+    const { success } = this.state;
     return (
       <Fragment>
         <div className="container-fluid" id="grad1">
@@ -126,7 +173,7 @@ class Daftar extends Component {
               <div className="card px-0 pt-4 pb-0 mb-3">
                 <div className="row">
                   <div className="col-md-12 mx-0 header-content d-flex justify-content-center">
-                    <img src={icon} className="icon" />
+                    <img src={icon} className="icon" alt="Icon-img" />
                     <div className="text-header">
                       <p className="text-center text-uppercase">
                         form pendaftaran
@@ -171,7 +218,7 @@ class Daftar extends Component {
                             style={{ fontFamily: "montserrat" }}
                           >
                             <option value="">Jenis Kelamin</option>
-                            <hr />
+
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
                           </select>
@@ -196,7 +243,7 @@ class Daftar extends Component {
                             style={{ fontFamily: "montserrat" }}
                           >
                             <option value="">Pilih Agama</option>
-                            <hr />
+
                             <option value="islam">Islam</option>
                             <option value="protestan">Protestan</option>
                             <option value="katolik">Katolik</option>
@@ -400,7 +447,7 @@ class Daftar extends Component {
                             style={{ fontFamily: "montserrat" }}
                           >
                             <option value="">Pilih Program</option>
-                            <hr />
+
                             <option value="0">Reguler</option>
                             <option value="1">Unggulan</option>
                           </select>
@@ -414,7 +461,7 @@ class Daftar extends Component {
                             <option value="">
                               Pilih Minat Bidang Keahlian
                             </option>
-                            <hr />
+
                             <option value="1">
                               Teknik Informasi dan Komunikasi
                             </option>
@@ -444,11 +491,18 @@ class Daftar extends Component {
                           <h2 className="fs-title text-center">Berhasil !</h2>
                           <br />
                           <br />
+                          {success ? (
+                            <div className="alert alert-success" role="alert">
+                              Pendaftaran Berhasil, Mohon ditunggu akses
+                              selanjutnya
+                            </div>
+                          ) : null}
                           <div className="row justify-content-center">
                             <div className="col-3">
                               <img
                                 src="https://img.icons8.com/color/96/000000/ok--v2.png"
                                 className="fit-image"
+                                alt="Success-img"
                               />
                             </div>
                           </div>
