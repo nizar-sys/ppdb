@@ -26,7 +26,10 @@ class Daftar extends Component {
   };
   tambahPendaftaran = () => {
     $("#daftar").on("click", () => {
+      const randomInt = Math.floor(Math.random() * 3000)
+      const id = randomInt
       let dataPendaftar = {
+        pendaftaran_id: id,
         nama_siswa: $("#nama_siswa").val(),
         jk_siswa: $("#jk").val(),
         tempat_lahir_siswa: $("#tempat_lahir").val(),
@@ -59,6 +62,9 @@ class Daftar extends Component {
         pekerjaan_ibu: $("#pekerjaan_ibu").val(),
         kode_program: $("#kode_program").val(),
         kode_bidang: $("#kode_bidang").val(),
+        username: $("#nik_siswa").val(),
+        password: "123wikrama",
+        role: 2,
       };
       Swal.fire({
         text: "Dengan mengklik 'Daftar' Kami harap Anda setuju & yakin yang Anda lakukan !",
@@ -76,9 +82,19 @@ class Daftar extends Component {
             data: dataPendaftar,
           })
             .then((res) => {
-              this.setState({
-                success: true,
-              });
+              axios({
+                url: "http://localhost:8080/api/user/",
+                method: "POST",
+                data: dataPendaftar,
+              })
+                .then((res) => {
+                  this.setState({
+                    success: true,
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
             })
             .catch((err) => {
               console.log(err);
@@ -448,8 +464,8 @@ class Daftar extends Component {
                           >
                             <option value="">Pilih Program</option>
 
-                            <option value="0">Reguler</option>
-                            <option value="1">Unggulan</option>
+                            <option value="1">Reguler</option>
+                            <option value="2">Unggulan</option>
                           </select>
                           <br /> <br />
                           <select
